@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "io.github.hahero_asayake.twa",
-        "sha256_cert_fingerprints": ["22:31:6C:52:93:14:B6:6C:9B:93:CB:D0:5F:E9:BB:F5:A9:F0:AF:DB:A6:A4:7A:75:2A:94:4B:DD:0A:E0:C6:BF"]
+        "sha256_cert_fingerprints": ["5A:A8:18:DB:79:06:EF:3F:7B:B2:00:86:3C:7F:CC:48:15:F1:C9:08:07:3D:1D:B7:66:E1:32:A2:2C:55:38:D3"]
       }
     }]
