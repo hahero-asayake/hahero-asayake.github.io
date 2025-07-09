@@ -1,10 +1,8 @@
-# .github/workflows/github-pages.yml
-
 name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["main"] # あなたのメインブランチ名に合わせてください
+    branches: ["main"] # あなたのメインブランチ名に合わせてください (例: master, main, etc.)
 
   workflow_dispatch:
 
@@ -27,13 +25,13 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          # ここを具体的なバージョンに修正
-          ruby-version: '3.3' # または '3.3.0' や '3.4' など、リストにあるいずれかの最新安定版
+          ruby-version: '3.3' # または '3.4' など、利用可能な安定版のRubyバージョンを指定
           bundler-cache: true
 
       - name: Build with Jekyll
         run: bundle exec jekyll build
 
+      # .well-known ディレクトリを _site にコピーするステップ
       - name: Copy .well-known directory
         run: |
           mkdir -p _site/.well-known/
@@ -42,8 +40,4 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
-    ```
-
-**修正後、再度コミットしてGitHubにプッシュしてください。**
-これにより、GitHub Actionsが正しいRubyバージョンでセットアップされ、ビルドが進行するはずです。
+          path: ./_site # この行の直後、またはこの行自体のインデントを確認してください
