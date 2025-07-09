@@ -1,8 +1,11 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "io.github.hahero_asayake.twa",
-        "sha256_cert_fingerprints": ["5A:A8:18:DB:79:06:EF:3F:7B:B2:00:86:3C:7F:CC:48:15:F1:C9:08:07:3D:1D:B7:66:E1:32:A2:2C:55:38:D3"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.hahero_asayake.twa",
+      "sha256_cert_fingerprints":
+        ["FF:D5:46:1E:C2:4A:41:40:E1:B4:59:2F:F2:41:CB:7A:5D:1B:E0:B7:38:5D:C5:12:8D:AE:E1:C4:6F:51:04:21"]
+    }
+  }
+]
