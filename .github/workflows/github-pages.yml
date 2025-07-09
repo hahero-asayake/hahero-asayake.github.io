@@ -1,0 +1,51 @@
+# .github/workflows/github-pages.yml (例)
+
+name: Deploy Jekyll site to Pages
+
+on:
+  push:
+    branches: ["main"] # あなたのメインブランチ名に合わせてください
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.x' # Jekyllが要求するRubyバージョン
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+
+      # ここから追加するステップ
+      - name: Copy .well-known directory
+        run: |
+          mkdir -p _site/.well-known/
+          cp -r .well-known/* _site/.well-known/
+        # _siteディレクトリが存在することを確認してから実行
+        # cp -r .well-known/ _site/ の方がシンプルかもしれませんが、
+        # 既に_site/.well-knownが存在する場合に問題になる可能性を考慮し、
+        # 確実にファイルをコピーするコマンドにしています。
+        # または、rsync -av .well-known/ _site/.well-known/ も使えます。
+      # ここまで追加するステップ
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
