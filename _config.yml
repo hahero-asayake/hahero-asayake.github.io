@@ -1,3 +1,7 @@
+title: Asayake Hahero
+description: AIパワーで麻雀ツールを作ってみました。
+url: "https://hahero-asayake.github.io"
+
 plugins:
   - jekyll-sitemap
 include:
