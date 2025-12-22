@@ -1,0 +1,18 @@
+---
+layout: default
+title: "Daily"
+---
+
+<section class="post">
+  <h1>Daily</h1>
+  <p class="muted">日記一覧（新しい順）</p>
+
+  <ul>
+    {% assign items = site.pages | where_exp: "p", "p.path contains 'blog/daily/'" %}
+    {% assign items = items | where_exp: "p", "p.name != 'index.html'" %}
+    {% assign items = items | sort: "name" | reverse %}
+    {% for p in items %}
+      <li><a href="{{ p.url | relative_url }}">{{ p.name | replace: ".md", "" | replace: ".html", "" }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
