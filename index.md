@@ -26,10 +26,9 @@ title: Asayake Hahero
 <div class="grid-2">
   <a href="/blog/daily/" class="link-card">
     <h3>📝 Daily</h3>
-    <p>日記</p>
+    <p>生成AIで加工した日記</p>
   </a>
   <a href="https://x.com/AsayakeHahero" target="_blank" rel="noopener" class="link-card">
     <h3>Twitter/X</h3>
-    <p>Updates & Thoughts</p>
   </a>
 </div>
