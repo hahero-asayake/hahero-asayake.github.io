@@ -291,3 +291,32 @@ h1 {
     display: block;
   }
 }
+
+/* Share Button */
+.share-area {
+  margin: 32px 0;
+  display: flex;
+  justify-content: flex-end;
+  /* Align to right? or center? Keeping it neutral or right */
+}
+
+.share-btn-x {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.share-btn-x:hover {
+  transform: translateY(-2px);
+  background-color: #222;
+  text-decoration: none;
+  color: #fff;
+}
