@@ -1,0 +1,63 @@
+{% assign current_url = page.url %}
+{% assign siblings = "" | split: "" %}
+{% assign current_dir = page.dir %}
+
+{% comment %}
+Filter pages to find those in the same directory.
+We sort by 'path' to ensure a consistent natural order (useful for date-based filenames).
+{% endcomment %}
+{% assign pages = site.pages | sort: 'path' %}
+
+{% for p in pages %}
+{% if p.dir == current_dir %}
+{% unless p.name == 'index.html' or p.name == 'index.md' %}
+{% assign siblings = siblings | push: p %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+
+{% assign current_index = nil %}
+{% for p in siblings %}
+{% if p.url == current_url %}
+{% assign current_index = forloop.index0 %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% if current_index %}
+{% assign prev_index = current_index | minus: 1 %}
+{% assign next_index = current_index | plus: 1 %}
+{% assign prev_post = nil %}
+{% assign next_post = nil %}
+
+{% if prev_index >= 0 %}
+{% assign prev_post = siblings[prev_index] %}
+{% endif %}
+
+{% if siblings[next_index] %}
+{% assign next_post = siblings[next_index] %}
+{% endif %}
+
+{% if prev_post or next_post %}
+<div class="divider"></div>
+<nav class="post-nav grid-2">
+    {% if prev_post %}
+    <a href="{{ prev_post.url | relative_url }}" class="link-card nav-prev">
+        <div class="nav-label">Previous</div>
+        <h3>{{ prev_post.title }}</h3>
+    </a>
+    {% else %}
+    <div class="nav-placeholder"></div>
+    {% endif %}
+
+    {% if next_post %}
+    <a href="{{ next_post.url | relative_url }}" class="link-card nav-next">
+        <div class="nav-label">Next</div>
+        <h3>{{ next_post.title }}</h3>
+    </a>
+    {% else %}
+    <div class="nav-placeholder"></div>
+    {% endif %}
+</nav>
+{% endif %}
+{% endif %}
