@@ -14,8 +14,10 @@ Share Button Logic
 {% capture share_text %}{{ page.title }} | {{ site.title }}{% endcapture %}
 {% endif %}
 
-{% assign share_link = "https://twitter.com/intent/tweet?text=" | append: share_text | url_encode | append: "&url=" |
-append: share_url %}
+{% assign encoded_text = share_text | url_encode %}
+{% assign encoded_url = share_url | url_encode %}
+{% assign share_link = "https://x.com/intent/tweet?text=" | append: encoded_text | append: "&url=" | append:
+encoded_url %}
 
 <div class="share-area">
     <a href="{{ share_link }}" target="_blank" rel="noopener noreferrer" class="share-btn-x">
