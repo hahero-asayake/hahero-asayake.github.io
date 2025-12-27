@@ -9,7 +9,7 @@ Share Button Logic
 
 {% if page.url contains '/blog/daily/' or page.layout == 'daily' %}
 {% capture share_text %}『{{ page.title }}』
-@AsayakeHahero の#日記
+@AsayakeHahero の #日記
 {% endcapture %}
 {% else %}
 {% capture share_text %}{{ page.title }} | {{ site.title }}
