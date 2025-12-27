@@ -1,6 +1,6 @@
 {% comment %}
 Share Button Logic
-- Daily: 『Title』 @AsayakeHahero の#日記
+- Daily: 『Title』 @AsayakeHahero の #日記
 - Default: Title | Site Name
 {% endcomment %}
 
@@ -9,9 +9,11 @@ Share Button Logic
 
 {% if page.url contains '/blog/daily/' or page.layout == 'daily' %}
 {% capture share_text %}『{{ page.title }}』
-@AsayakeHahero の#日記{% endcapture %}
+@AsayakeHahero の#日記
+{% endcapture %}
 {% else %}
-{% capture share_text %}{{ page.title }} | {{ site.title }}{% endcapture %}
+{% capture share_text %}{{ page.title }} | {{ site.title }}
+{% endcapture %}
 {% endif %}
 
 {% assign encoded_text = share_text | url_encode %}
