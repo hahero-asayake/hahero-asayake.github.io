@@ -30,8 +30,10 @@ title: Asayake Hahero
   </a>
   <a href="https://x.com/AsayakeHahero" target="_blank" rel="noopener" class="link-card">
     <h3>Twitter/X</h3>
+    <p>メインSNS</p>
   </a>
   <a href="https://note.com/asayake_hahero" target="_blank" rel="noopener" class="link-card">
     <h3>note</h3>
+    <p>雑多なblog</p>
   </a>
 </div>
