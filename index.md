@@ -31,4 +31,7 @@ title: Asayake Hahero
   <a href="https://x.com/AsayakeHahero" target="_blank" rel="noopener" class="link-card">
     <h3>Twitter/X</h3>
   </a>
+  <a href="https://note.com/asayake_hahero" target="_blank" rel="noopener" class="link-card">
+    <h3>note</h3>
+  </a>
 </div>

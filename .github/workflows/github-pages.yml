@@ -28,6 +28,16 @@ jobs:
           ruby-version: '3.3' # または '3.4' など、利用可能な安定版のRubyバージョンを指定
           bundler-cache: true
 
+      - name: Install OGP generator dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pillow
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: Generate per-article OGP images
+        run: python3 scripts/generate_ogp.py
+
       - name: Build with Jekyll
         run: bundle exec jekyll build
 
