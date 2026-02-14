@@ -16,10 +16,15 @@ POSTS_DIR = ROOT / "blog" / "daily"
 BASE_IMAGE = ROOT / "assets" / "ogp.png"
 OUT_DIR = ROOT / "assets" / "ogp" / "daily"
 SNIPPET_LEN = 30
+FONT_SCALE = 1.2
 
 
 def find_font() -> str:
     candidates = [
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJKjp-Bold.otf",
+        "/mnt/c/Windows/Fonts/YuGothB.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
         "/usr/share/fonts/truetype/noto/NotoSansCJKjp-Regular.otf",
@@ -109,7 +114,9 @@ def fit_text(
     max_height: int,
     max_lines: int = 2,
 ) -> tuple[ImageFont.FreeTypeFont, list[str], int]:
-    for size in range(88, 28, -2):
+    max_size = int(88 * FONT_SCALE)
+    min_size = int(28 * FONT_SCALE)
+    for size in range(max_size, min_size, -2):
         font = ImageFont.truetype(font_path, size)
         lines = wrap_text(draw, text, font, max_width)
         if len(lines) > max_lines:
@@ -124,11 +131,11 @@ def fit_text(
             return font, lines, line_h
 
     # Fallback: smallest size and force 2 lines at most.
-    font = ImageFont.truetype(font_path, 28)
+    font = ImageFont.truetype(font_path, min_size)
     lines = wrap_text(draw, text, font, max_width)[:max_lines]
     if lines and len(lines) == max_lines and not lines[-1].endswith("…"):
         lines[-1] = lines[-1][:-1] + "…"
-    return font, lines, int(28 * 1.25)
+    return font, lines, int(min_size * 1.25)
 
 
 def generate_for_post(post_path: Path, base_template: Image.Image, font_path: str) -> Path:
