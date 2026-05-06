@@ -181,15 +181,25 @@ def main() -> int:
 
     font_path = find_font()
     base = Image.open(BASE_IMAGE)
-    template = make_background_template(base)
+    template: Image.Image | None = None  # lazy: skip expensive blur if nothing to generate
 
     posts = sorted(p for p in POSTS_DIR.glob("*.md") if p.name != "index.md")
     if not posts:
         print("No daily markdown posts found.")
         return 0
 
-    generated = [generate_for_post(post, template, font_path) for post in posts]
-    print(f"Generated {len(generated)} OGP images in {OUT_DIR}")
+    generated: list[Path] = []
+    skipped = 0
+    for post in posts:
+        out_path = OUT_DIR / f"{post.stem}.png"
+        if out_path.exists():
+            skipped += 1
+            continue
+        if template is None:
+            template = make_background_template(base)
+        generated.append(generate_for_post(post, template, font_path))
+
+    print(f"Generated {len(generated)} OGP images, skipped {skipped} (up-to-date) in {OUT_DIR}")
     return 0
 
 

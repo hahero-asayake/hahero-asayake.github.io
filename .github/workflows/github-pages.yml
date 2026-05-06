@@ -2,7 +2,7 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["main"] # あなたのメインブランチ名に合わせてください (例: master, main, etc.)
+    branches: ["main"]
 
   workflow_dispatch:
 
@@ -28,15 +28,38 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3' # または '3.4' など、利用可能な安定版のRubyバージョンを指定
+          ruby-version: '3.3'
           bundler-cache: true
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-pillow-${{ runner.os }}
+
+      - name: Cache Noto CJK fonts
+        uses: actions/cache@v4
+        id: cache-noto-fonts
+        with:
+          path: /usr/share/fonts/opentype/noto
+          key: fonts-noto-cjk-${{ runner.os }}-v1
+
+      - name: Cache OGP images
+        uses: actions/cache@v4
+        with:
+          path: assets/ogp/daily
+          key: ogp-${{ hashFiles('blog/daily/**/*.md') }}
+          restore-keys: |
+            ogp-
 
       - name: Install OGP generator dependencies
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install pillow
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk
+          if [ "${{ steps.cache-noto-fonts.outputs.cache-hit }}" != "true" ]; then
+            sudo apt-get update
+            sudo apt-get install -y fonts-noto-cjk
+          fi
 
       - name: Generate per-article OGP images
         run: python3 scripts/generate_ogp.py
@@ -44,7 +67,6 @@ jobs:
       - name: Build with Jekyll
         run: bundle exec jekyll build
 
-      # .well-known ディレクトリを _site にコピーするステップ
       - name: Copy .well-known directory
         run: |
           mkdir -p _site/.well-known/
@@ -53,7 +75,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site # この行の直後、またはこの行自体のインデントを確認してください
+          path: ./_site
 
   deploy:
     environment:
