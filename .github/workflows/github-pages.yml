@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: assets/ogp/daily
-          key: ogp-${{ hashFiles('blog/daily/**/*.md', 'scripts/generate_ogp.py') }}
+          key: ogp-v2-${{ hashFiles('blog/daily/**/*.md', 'scripts/generate_ogp.py') }}
 
       - name: Install OGP generator dependencies
         run: |

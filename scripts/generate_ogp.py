@@ -303,7 +303,10 @@ def generate_v2(src: Path, out: Path, fonts: dict, base: Image.Image) -> None:
     if not weather_label:
         weather_label = weather_label_auto
 
-    bg   = base.convert('RGB').resize((V2_W, V2_H), Image.LANCZOS)
+    bg_rgba = base.convert('RGBA')
+    white   = Image.new('RGBA', bg_rgba.size, (255, 255, 255, 255))
+    bg_on_white = Image.alpha_composite(white, bg_rgba)
+    bg   = bg_on_white.convert('RGB').resize((V2_W, V2_H), Image.LANCZOS)
     bg   = bg.filter(ImageFilter.GaussianBlur(radius=4))
     img  = bg.copy()
     draw = ImageDraw.Draw(img)
