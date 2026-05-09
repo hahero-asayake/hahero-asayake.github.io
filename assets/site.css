@@ -439,13 +439,13 @@ h1 {
   font-size: 0.9rem;
   line-height: 1.8rem;
   color: var(--nb3-ink);
-  background-image: repeating-linear-gradient(
+  background-image: linear-gradient(
     to bottom,
-    transparent,
     transparent calc(1.8rem - 1px),
     var(--nb3-rule) calc(1.8rem - 1px),
     var(--nb3-rule) 1.8rem
   );
+  background-size: 100% 1.8rem;
   background-origin: content-box;
   background-clip: content-box;
   min-height: 7rem;
