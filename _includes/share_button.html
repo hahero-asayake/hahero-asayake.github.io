@@ -7,7 +7,10 @@ Share Button Logic
 {% assign share_url = page.url | absolute_url %}
 {% assign share_text = "" %}
 
-{% if page.url contains '/blog/daily/' or page.layout == 'daily' %}
+{% if page.layout == 'daily_v2' %}
+{% capture share_text %}@AsayakeHahero かんさつ日記『{{ page.title }}』
+{% endcapture %}
+{% elsif page.url contains '/blog/daily/' or page.layout == 'daily' %}
 {% capture share_text %}『{{ page.title }}』
 @AsayakeHahero の #日記
 {% endcapture %}

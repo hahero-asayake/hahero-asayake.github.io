@@ -320,3 +320,144 @@ h1 {
   text-decoration: none;
   color: #fff;
 }
+
+/* ── daily_v2 A-3 スタンプノート ── */
+:root {
+  --nb3-green: #4a7c59;
+  --nb3-cream: #faf6e9;
+  --nb3-cream-dark: #ede7d0;
+  --nb3-ink: #2d2416;
+  --nb3-border: #c8b89a;
+  --nb3-rule: rgba(200, 180, 150, 0.28);
+}
+
+.nb3 {
+  background: var(--nb3-cream);
+  border: 2px solid var(--nb3-border);
+  border-radius: 10px;
+  box-shadow: 5px 6px 24px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  color: var(--nb3-ink);
+  font-family: 'Klee One', cursive;
+  margin: 20px 0;
+}
+
+.nb3-head {
+  background: repeating-linear-gradient(
+    45deg,
+    #4a7c59, #4a7c59 8px, #3d6b4b 8px, #3d6b4b 16px
+  );
+  padding: 0.55rem 1.4rem;
+  text-align: center;
+}
+
+.nb3-series {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.15rem 1.2rem;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+}
+
+.nb3-stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--nb3-cream-dark);
+  border-bottom: 1px solid var(--nb3-border);
+}
+
+.nb3-stamp {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border: 2.5px solid var(--nb3-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  opacity: 0.82;
+  transform: rotate(-6deg);
+}
+
+.nb3-stamp-meta {
+  flex: 1;
+}
+
+.nb3-meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.22rem;
+}
+
+.nb3-ml {
+  color: var(--nb3-green);
+  font-size: 0.67rem;
+  font-weight: 600;
+  min-width: 4.5em;
+}
+
+.nb3-mv {
+  color: var(--nb3-ink);
+  border-bottom: 1px solid var(--nb3-border);
+  flex: 1;
+}
+
+.nb3-title {
+  padding: 0.85rem 1.4rem 0.25rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--nb3-ink);
+}
+
+.nb3-tags {
+  padding: 0.2rem 1.4rem 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.nb3-tag {
+  background: #fff;
+  color: #b06040;
+  border: 1.5px solid #e8c090;
+  border-radius: 3px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.7rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.nb3-body {
+  padding: 0.4rem 1.4rem 1.3rem;
+  font-size: 0.9rem;
+  line-height: 1.8rem;
+  color: var(--nb3-ink);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(1.8rem - 1px),
+    var(--nb3-rule) calc(1.8rem - 1px),
+    var(--nb3-rule) 1.8rem
+  );
+  min-height: 7rem;
+}
+
+.nb3-body p {
+  margin: 0;
+  color: var(--nb3-ink);
+}
+
+.nb3-footer {
+  border-top: 2px dashed #b06040;
+  margin: 0 1.4rem;
+  padding: 0.7rem 0;
+  font-size: 0.75rem;
+  color: #b06040;
+}
