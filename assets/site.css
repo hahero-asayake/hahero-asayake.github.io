@@ -329,6 +329,9 @@ h1 {
   --nb3-ink: #2d2416;
   --nb3-border: #c8b89a;
   --nb3-rule: rgba(200, 180, 150, 0.28);
+  --nb3-font: 14px;
+  --nb3-line: 28px;
+  --nb3-rule-pos: 21px;
 }
 
 .nb3 {
@@ -436,17 +439,17 @@ h1 {
 
 .nb3-body {
   padding: 0.4rem 1.4rem 1.3rem;
-  font-size: 0.9rem;
-  line-height: 1.8rem;
+  font-size: var(--nb3-font);
+  line-height: var(--nb3-line);
   color: var(--nb3-ink);
   background-image: linear-gradient(
     to bottom,
-    transparent 75%,
-    var(--nb3-rule) 75%,
-    var(--nb3-rule) calc(75% + 1px),
-    transparent calc(75% + 1px)
+    transparent var(--nb3-rule-pos),
+    var(--nb3-rule) var(--nb3-rule-pos),
+    var(--nb3-rule) calc(var(--nb3-rule-pos) + 1px),
+    transparent calc(var(--nb3-rule-pos) + 1px)
   );
-  background-size: 100% 1.8rem;
+  background-size: 100% var(--nb3-line);
   background-origin: content-box;
   background-clip: content-box;
   min-height: 7rem;
