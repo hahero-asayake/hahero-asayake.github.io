@@ -283,7 +283,7 @@ def _date_from_stem(stem: str) -> str:
         return stem
 
 
-def generate_v2(src: Path, out: Path, fonts: dict) -> None:
+def generate_v2(src: Path, out: Path, fonts: dict, base: Image.Image) -> None:
     raw = src.read_text(encoding='utf-8')
     fm = parse_front_matter(raw)
     body_raw = raw.split('---', 2)[2].strip() if raw.count('---') >= 2 else raw
@@ -301,7 +301,9 @@ def generate_v2(src: Path, out: Path, fonts: dict) -> None:
 
     stamp_ch, stamp_c = WEATHER_MAP.get(weather, ('曇', GREEN))
 
-    img  = Image.new('RGB', (V2_W, V2_H), V2_BG)
+    bg   = base.convert('RGB').resize((V2_W, V2_H), Image.LANCZOS)
+    bg   = bg.filter(ImageFilter.GaussianBlur(radius=4))
+    img  = bg.copy()
     draw = ImageDraw.Draw(img)
 
     # Card
@@ -368,7 +370,7 @@ def generate_v2(src: Path, out: Path, fonts: dict) -> None:
     if tags:
         chip_h = draw.textbbox((0, 0), 'あ', font=f_tg)[3] + 8
         tx = cx0
-        for tag in tags:
+        for tag in tags[:3]:
             chip_w = int(draw.textlength(tag, font=f_tg)) + 16
             if tx + chip_w > cx1:
                 break
@@ -428,14 +430,14 @@ def main() -> int:
         layout = fm.get('layout', '')
 
         if layout == 'daily_v2':
-            if out_path.exists() and out_path.stat().st_mtime >= post.stat().st_mtime:
+            if out_path.exists():
                 skipped += 1
                 continue
             if v2_fonts is None:
                 bold, reg = find_noto_pair()
                 v2_fonts = load_v2_fonts(bold, reg)
             print(f'Generating (v2): {post.name}')
-            generate_v2(post, out_path, v2_fonts)
+            generate_v2(post, out_path, v2_fonts, base)
             generated.append(out_path)
         else:
             if out_path.exists():

@@ -8,7 +8,8 @@ Share Button Logic
 {% assign share_text = "" %}
 
 {% if page.layout == 'daily_v2' %}
-{% capture share_text %}@AsayakeHahero かんさつ日記『{{ page.title }}』
+{% capture share_text %}@AsayakeHahero かんさつ日記
+『{{ page.title }}』
 {% endcapture %}
 {% elsif page.url contains '/blog/daily/' or page.layout == 'daily' %}
 {% capture share_text %}『{{ page.title }}』

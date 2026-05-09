@@ -49,8 +49,6 @@ jobs:
         with:
           path: assets/ogp/daily
           key: ogp-${{ hashFiles('blog/daily/**/*.md', 'scripts/generate_ogp.py') }}
-          restore-keys: |
-            ogp-
 
       - name: Install OGP generator dependencies
         run: |
