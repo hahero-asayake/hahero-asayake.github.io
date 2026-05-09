@@ -446,7 +446,8 @@ h1 {
     var(--nb3-rule) calc(1.8rem - 1px),
     var(--nb3-rule) 1.8rem
   );
-  background-position: 0 0.4rem;
+  background-origin: content-box;
+  background-clip: content-box;
   min-height: 7rem;
 }
 
