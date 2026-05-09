@@ -45,9 +45,9 @@ CHIP_BDR   = (232, 192, 144)
 V2_BG      = (20,  21,  31)
 
 WEATHER_MAP = {
-    'sunny':  ('晴', SUNNY_C),
-    'cloudy': ('曇', GREEN),
-    'rainy':  ('雨', RAINY_C),
+    'sunny':  ('晴', SUNNY_C,  'はれ（好調）'),
+    'cloudy': ('曇', GREEN,    'くもり（ふつう）'),
+    'rainy':  ('雨', RAINY_C,  'あめ（不調）'),
 }
 
 # ── Font helpers ─────────────────────────────────────────────────────────────
@@ -299,7 +299,9 @@ def generate_v2(src: Path, out: Path, fonts: dict, base: Image.Image) -> None:
     body_text = ' '.join(l.strip() for l in body_raw.splitlines() if l.strip())
     body_text = _remove_emoji(body_text).strip()
 
-    stamp_ch, stamp_c = WEATHER_MAP.get(weather, ('曇', GREEN))
+    stamp_ch, stamp_c, weather_label_auto = WEATHER_MAP.get(weather, ('曇', GREEN, 'くもり（ふつう）'))
+    if not weather_label:
+        weather_label = weather_label_auto
 
     bg   = base.convert('RGB').resize((V2_W, V2_H), Image.LANCZOS)
     bg   = bg.filter(ImageFilter.GaussianBlur(radius=4))
