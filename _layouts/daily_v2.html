@@ -11,7 +11,10 @@ layout: default
 
 {% assign date_basename = page.name | remove: '.md' | remove: '.html' %}
 {% assign date_parts = date_basename | split: '-' %}
-{% assign date_label_auto = date_parts[0] | append: 'ねん ' | append: date_parts[1] | plus: 0 | append: 'がつ ' | append: date_parts[2] | plus: 0 | append: 'にち' %}
+{% assign date_year = date_parts[0] %}
+{% assign date_month = date_parts[1] | plus: 0 %}
+{% assign date_day = date_parts[2] | plus: 0 %}
+{% assign date_label_auto = date_year | append: 'ねん ' | append: date_month | append: 'がつ ' | append: date_day | append: 'にち' %}
 
 {% assign display_date_label = page.date_label | default: date_label_auto %}
 {% assign display_weather_label = page.weather_label | default: weather_label_auto %}
