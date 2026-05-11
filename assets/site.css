@@ -329,9 +329,9 @@ h1 {
   --nb3-ink: #2d2416;
   --nb3-border: #c8b89a;
   --nb3-rule: rgba(200, 180, 150, 0.28);
-  --nb3-font: 14px;
-  --nb3-line: 28px;
-  --nb3-rule-pos: 21px;
+  --nb3-font: 17px;
+  --nb3-line: 34px;
+  --nb3-rule-pos: 25px;
 }
 
 .nb3 {
